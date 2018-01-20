@@ -1,5 +1,5 @@
 
-import os
+import os, datetime
 from book import Book
 
 DATA_DIR = 'data'
@@ -44,7 +44,7 @@ def shutdown():
     try:
         os.mkdir(DATA_DIR)
     except FileExistsError:
-        pass # Ignore - if directory exists, don't need to do anything. 
+        pass # Ignore - if directory exists, don't need to do anything.
 
     with open(BOOKS_FILE_NAME, 'w') as f:
         f.write(output_data)
@@ -91,6 +91,8 @@ def set_read(book_id, read):
 
         if book.id == book_id:
             book.read = True
+            now = datetime.datetime.now()
+            book.date_read = now.month + "/" + now.day + "/" + now.year
             return True
 
     return False # return False if book id is not found
@@ -106,7 +108,7 @@ def make_book_list(string_from_file):
 
     for book_str in books_str:
         data = book_str.split(separator)
-        book = Book(data[0], data[1], data[2] == 'True', int(data[3]))
+        book = Book(data[0], data[1], data[2] == 'True', int(data[3]), str(data[4]))
         book_list.append(book)
 
 
@@ -118,7 +120,7 @@ def make_output_data():
     output_data = []
 
     for book in book_list:
-        output = [ book.title, book.author, str(book.read), str(book.id) ]
+        output = [ book.title, book.author, str(book.read), str(book.id), str(book.date_read)]
         output_str = separator.join(output)
         output_data.append(output_str)
 
