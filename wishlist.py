@@ -25,6 +25,10 @@ def handle_choice(choice):
     elif choice == '4':
         new_book()
 
+    # 5. Delete a book from the wishlist
+    elif choice == '5':
+        delete_book()
+
     #6. Edit book Title or Author
     elif choice == '6':
         change_book_info()
@@ -74,6 +78,15 @@ def new_book():
     datastore.add_book(new_book)
     # output for user
     ui.message('Book added: ' + str(new_book))
+
+# function for deleting a book using ui and datastore
+def delete_book():
+    # users ui to check and see if the book is in the system
+    book_id = ui.ask_for_book_id()
+    datastore.delete_book(book_id)
+
+
+
 
 def change_book_info():
     ''' to change information about a book '''
