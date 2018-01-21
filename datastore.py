@@ -44,7 +44,7 @@ def shutdown():
     try:
         os.mkdir(DATA_DIR)
     except FileExistsError:
-        pass # Ignore - if directory exists, don't need to do anything. 
+        pass # Ignore - if directory exists, don't need to do anything.
 
     with open(BOOKS_FILE_NAME, 'w') as f:
         f.write(output_data)
@@ -100,14 +100,17 @@ def set_read(book_id, read):
 def make_book_list(string_from_file):
     ''' turn the string from the file into a list of Book objects'''
 
-    global book_list
+    try:
+        global book_list
 
-    books_str = string_from_file.split('\n')
+        books_str = string_from_file.split('\n')
 
-    for book_str in books_str:
-        data = book_str.split(separator)
-        book = Book(data[0], data[1], data[2] == 'True', int(data[3]))
-        book_list.append(book)
+        for book_str in books_str:
+            data = book_str.split(separator)
+            book = Book(data[0], data[1], data[2] == 'True', int(data[3]))
+            book_list.append(book)
+    except IndexError:
+        pass
 
 
 def make_output_data():
