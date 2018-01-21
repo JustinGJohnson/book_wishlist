@@ -1,5 +1,5 @@
-# importing information from the operating system
-import os
+# importing information from the operating system and datetime library
+import os, datetime
 # importing information from Book.py
 from book import Book
 
@@ -25,8 +25,12 @@ def setup():
     # try except action to see if there is a file on the system
     try :
         with open(BOOKS_FILE_NAME) as f:
-            data = f.read()
-            make_book_list(data)
+            # fix for trying to read empty file and throwing IndexError
+            if os.stat(BOOKS_FILE_NAME).st_size==0:
+                pass
+            else:
+                data = f.read()
+                make_book_list(data)
     except FileNotFoundError:
         # First time program has run. Assume no books.
         pass
@@ -142,6 +146,11 @@ def set_read(book_id, read):
 
         if book.id == book_id:
             book.read = True
+            # uses datetime library
+            # save current moment which is an object with month, day, year, etc
+            # use month day and year from now object and set date_read to string
+            now = datetime.datetime.now()
+            book.date_read = str(now.month) + "/" + str(now.day) + "/" + str(now.year)
             return True
 
     return False # return False if book id is not found
@@ -161,7 +170,7 @@ def make_book_list(string_from_file):
 
         for book_str in books_str:
             data = book_str.split(separator)
-            book = Book(data[0], data[1], data[2] == 'True', int(data[3]))
+            book = Book(data[0], data[1], data[2] == 'True', int(data[3]), data[4])
             book_list.append(book)
     except IndexError:
         pass
@@ -178,7 +187,7 @@ def make_output_data():
 
     # a for loop to make the book infor
     for book in book_list:
-        output = [ book.title, book.author, str(book.read), str(book.id) ]
+        output = [ book.title, book.author, str(book.read), str(book.id), book.date_read ]
         output_str = separator.join(output)
         output_data.append(output_str)
 
