@@ -83,7 +83,12 @@ def new_book():
 def delete_book():
     # users ui to check and see if the book is in the system
     book_id = ui.ask_for_book_id()
-    datastore.delete_book(book_id)
+
+    # if statement to give user feedback about results
+    if datastore.delete_book(book_id, True):
+        ui.message('Successfully deleted')
+    else:
+        ui.message('Book id not found in database')
 
 
 

@@ -92,7 +92,7 @@ def add_book(book):
     book_list.append(book)
 
 # function for deleting books from db
-def delete_book(book_id):
+def delete_book(book_id, read):
 
     # calling the global variable book_list
     global book_list
@@ -102,7 +102,9 @@ def delete_book(book_id):
     for book in book_list:
         if book.id == book_id:
             book_list.remove(book)
-            print("Book sucessfully deleted!")
+            return True
+
+    return False
 
 def edit_book(book_id):
     ''' edit to db, return Book'''
