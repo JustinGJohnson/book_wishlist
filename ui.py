@@ -1,6 +1,7 @@
+# importing from book.py 
 from book import Book
 
-
+# function to display menu chices
 def display_menu_get_choice():
 
     '''Display choices for user, return users' selection'''
@@ -13,48 +14,57 @@ def display_menu_get_choice():
         q. Quit
     ''')
 
+    # getting input from user
     choice = input('Enter your selection: ')
 
     return choice
 
-
+# function to show list for the user
 def show_list(books):
     ''' Format and display a list of book objects'''
 
+    # if no books in books prints no books
     if len(books) == 0:
         print ('* No books *')
         return
 
+    # for loop to print books in books
     for book in books:
         print(book)
 
+    # printing the lenght of the list of books
     print('* {} book(s) *'.format(len(books)))
 
-
+# function to get book id from user
 def ask_for_book_id():
 
     ''' Ask user for book id, validate to ensure it is a positive integer '''
 
+    # while loope so that it will keep asking till it gets a number
     while True:
+        # try except to get a number
         try:
+            # getting the book id from user
             id = int(input('Enter book id:'))
+            # if to ensure number is greater than 0
             if id >= 0:
                 return id
+            # else statment to ask for a positive number
             else:
                 print('Please enter a positive number ')
         except ValueError:
             print('Please enter an integer number')
 
-
+# function to get new book information
 def get_new_book_info():
 
     ''' Get title and author of new book from user '''
-
+    # getting input from the user
     title = input('Enter title: ')
     author = input('Enter author: ')
     return Book(title, author)
 
-
+# function to display a message to the user
 def message(msg):
     '''Display a message to the user'''
     print(msg)
