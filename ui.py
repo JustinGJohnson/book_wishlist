@@ -1,4 +1,4 @@
-# importing from book.py 
+# importing from book.py
 from book import Book
 
 # function to display menu chices
@@ -11,6 +11,7 @@ def display_menu_get_choice():
         2. Show books that have been read
         3. Mark a book as read
         4. Add book to wishlist
+        6. Edit book Title or Author
         q. Quit
     ''')
 

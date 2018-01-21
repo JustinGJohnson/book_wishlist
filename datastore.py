@@ -87,6 +87,40 @@ def add_book(book):
     # adding the book to the end of the book_list
     book_list.append(book)
 
+
+def edit_book(book_id):
+    ''' edit to db, return Book'''
+    # calling the global variable book_list
+    global book_list
+
+
+    for book in book_list:
+        if book.id == book_id:
+
+            # setting variable to change them
+            title = book.title
+            author = book.author
+
+            # asking user if they would like to change title
+            changeTitle = input("Change Title? Y or N ")
+
+            # if statement to change the Title
+            if changeTitle == 'y' or changeTitle == 'Y':
+                title = input('What do you want the new title for ' + title + " to be? ")
+                book.title = title
+                print("The new title will be " + title)
+
+            # asking the user if they want to change the Author
+            changeAuthor = input("Change Author? Y or N ")
+
+            # if statement to change the author
+            if changeAuthor == 'y' or changeAuthor == "Y":
+                author = input("Who is the author for " + title + " ? ")
+                book.author = author
+            return True
+
+    return False # return False if book id is not found
+
 # function for creating ids for the book
 def generate_id():
     # calling the global variable counter
