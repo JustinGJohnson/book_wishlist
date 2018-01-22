@@ -42,12 +42,12 @@ def ask_for_book_id():
 
     ''' Ask user for book id, validate to ensure it is a positive integer '''
 
-    # while loope so that it will keep asking till it gets a number
+    # while loop so that it will keep asking till it gets a number
     while True:
         # try except to get a number
         try:
             # getting the book id from user
-            id = int(input('Enter book id:'))
+            id = int(input('Enter book id (title):'))
             # if to ensure number is greater than 0
             if id >= 0:
                 return id
@@ -56,6 +56,26 @@ def ask_for_book_id():
                 print('Please enter a positive number ')
         except ValueError:
             print('Please enter an integer number')
+
+# function to get book rating from user when they have finished the book
+def get_book_rating():
+
+    ''' Ask user for rating 1-5, validate to ensure it is a pos int 1-5 '''
+
+    # while loop that will keep asking until it gets a valid input
+    while True:
+        # try execpt to get a number
+        try:
+            # get rating from user
+            rating = int(input("Rate the book (1-5):"))
+            # if to ensure number is between 1 and 5
+            if rating > 0 and rating <= 5:
+                return rating
+            else:
+                print("Please enter a number between 1 and 5 ")
+        except ValueError:
+            print("Please enter an integer number")
+
 
 # function to get new book information
 def get_new_book_info():

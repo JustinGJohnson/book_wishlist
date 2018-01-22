@@ -8,7 +8,8 @@ class Book:
     # function init to set up the what variables are expected
     # id has the Default variable of no id
     # date_read has default value of empty string
-    def __init__(self, title, author, read=False, id=NO_ID, date_read=""):
+    # rating has default value of -1
+    def __init__(self, title, author, read=False, id=NO_ID, date_read="", rating=-1):
         '''Default book is unread, and has no ID'''
         # making the variable for the class
         self.title = title
@@ -17,6 +18,8 @@ class Book:
         self.id=id
         # new date_read variable
         self.date_read = date_read
+        # new rating variable
+        self.rating = rating
 
     # to change the id for the book that is using the class
     def set_id(self, id):
@@ -36,13 +39,15 @@ class Book:
             id_str = '(no id)'
 
         # if else to return template with date_read if the book has a date
+        # if date_read is not empty, then the book has been rated as well so include
+        # rating in template
         if self.date_read == "":
             template = 'id: {} Title: {} Author: {} Read: {}'
             return template.format(id_str, self.title, self.author, read_str)
 
         else:
-            template = 'id: {} Title: {} Author: {} Read: {} Finished: {}'
-            return template.format(id_str, self.title, self.author, read_str, self.date_read)
+            template = 'id: {} Title: {} Author: {} Read: {} Finished: {} Rating: {}'
+            return template.format(id_str, self.title, self.author, read_str, self.date_read, self.rating)
 
         return template.format(id_str, self.title, self.author, read_str)
 
