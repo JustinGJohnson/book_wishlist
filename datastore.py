@@ -80,16 +80,26 @@ def get_books(**kwargs):
 
 
 # function for adding books to db
-def add_book(book):
+def add_book(book, read):
     ''' Add to db, set id value, return Book'''
 
     # calling the global variable book_list
     global book_list
 
+    for b in book_list:
+        if book.title == b.title:
+            test = ui.want_add_again()
+            if test == "y":
+                book.id = generate_id()
+                book_list.append(book)
+                return True
+            else:
+                return False
     # using the id from book
     book.id = generate_id()
     # adding the book to the end of the book_list
     book_list.append(book)
+    return True
 
 # function for deleting books from db
 def delete_book(book_id, read):

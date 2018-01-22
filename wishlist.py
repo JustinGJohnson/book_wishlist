@@ -75,9 +75,11 @@ def new_book():
     # calling the fuction getNewBookInfo from ui
     new_book = ui.get_new_book_info()
     # calling function from datastore to addBook to its list
-    datastore.add_book(new_book)
-    # output for user
-    ui.message('Book added: ' + str(new_book))
+    if datastore.add_book(new_book, True):
+        # output for user
+        ui.message('Book added: ' + str(new_book))
+    else:
+        ui.message("The book has not been added again.")
 
 # function for deleting a book using ui and datastore
 def delete_book():

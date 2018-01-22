@@ -86,6 +86,25 @@ def get_new_book_info():
     author = input('Enter author: ')
     return Book(title, author)
 
+# function to prompt the user if they want to add a title that is already
+# on the wishlist
+def want_add_again():
+
+    ''' Ask user if they want to add the book to the wishlist again '''
+    # while loop that will keep asking until valid input
+    while True:
+
+        print("The book is already in the database.")
+        answer = input("Would you like to add it again? (y/n)")
+
+        if answer == "y":
+            return "y"
+        elif answer == "n":
+            return "n"
+        else:
+            print("Please enter y for yes, or n for no")
+
+
 # function to display a message to the user
 def message(msg):
     '''Display a message to the user'''
