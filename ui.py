@@ -28,7 +28,7 @@ def show_list(books):
 
     # if no books in books prints no books
     if len(books) == 0:
-        print ('* No books *')
+        print ('* No book(s) *')
         return
 
     # for loop to print books in books

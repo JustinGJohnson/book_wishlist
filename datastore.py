@@ -78,6 +78,7 @@ def get_books(**kwargs):
         read_books = [ book for book in book_list if book.read == kwargs['read'] ]
         return read_books
 
+    # search part to find a book in the book list
     if 'search' in kwargs:
         question = input('What book are you looking for? ')
         searchBooks = [ book for book in book_list if book.title == question ]

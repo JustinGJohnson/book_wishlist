@@ -105,6 +105,7 @@ def change_book_info():
     else:
         ui.message('Book id not found in database')
 
+# function to search for books in the book list
 def search_book():
     '''Fetch search books'''
     searchBooks = datastore.get_books(search=True)
