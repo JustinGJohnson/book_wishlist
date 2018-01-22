@@ -78,6 +78,11 @@ def get_books(**kwargs):
         read_books = [ book for book in book_list if book.read == kwargs['read'] ]
         return read_books
 
+    if 'search' in kwargs:
+        question = input('What book are you looking for? ')
+        searchBooks = [ book for book in book_list if book.title == question ]
+        return searchBooks
+
 
 # function for adding books to db
 def add_book(book, read):

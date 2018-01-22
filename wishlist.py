@@ -33,6 +33,10 @@ def handle_choice(choice):
     elif choice == '6':
         change_book_info()
 
+    #7. Search for book in wishlist
+    elif choice == '7':
+        search_book()
+
     # q. Quit
     elif choice == 'q':
         quit()
@@ -100,6 +104,12 @@ def change_book_info():
         ui.message('Successfully updated')
     else:
         ui.message('Book id not found in database')
+
+def search_book():
+    '''Fetch search books'''
+    searchBooks = datastore.get_books(search=True)
+    ui.show_list(searchBooks)
+
 
 # function for exiting the program and using datastore and ui
 def quit():
