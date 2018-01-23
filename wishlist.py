@@ -1,7 +1,7 @@
 #Main program
 
 # importing the ui.py program and the datastore program
-import ui, datastore
+import ui, datastore, fileio
 
 # importing book from the book program
 from book import Book
@@ -116,7 +116,7 @@ def search_book():
 def quit():
     '''Perform shutdown tasks'''
     # calling function shutdown from datastore
-    datastore.shutdown()
+    fileio.shutdown()
     # using function from ui to say bye
     ui.message('Bye!')
 
@@ -124,7 +124,7 @@ def quit():
 def main():
 
     # calling setup function from datastore
-    datastore.setup()
+    fileio.setup()
 
     # making quit and choice variables
     quit = 'q'
