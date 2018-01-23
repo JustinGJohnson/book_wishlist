@@ -76,10 +76,10 @@ def edit_book(book_id):
     for book in book_list:
         if book.id == book_id:
 
-            # setting variable to change them
+            # setting variable name to change them
             title = book.title
             author = book.author
-
+            
             # asking user if they would like to change title
             changeTitle = input("Change Title? Y or N ")
 
@@ -88,7 +88,8 @@ def edit_book(book_id):
                 title = input('What do you want the new title for ' + title + " to be? ")
                 book.title = title
                 print("The new title will be " + title)
-
+            else:
+                ui.message("No changes be made to the title.")
             # asking the user if they want to change the Author
             changeAuthor = input("Change Author? Y or N ")
 
@@ -96,6 +97,8 @@ def edit_book(book_id):
             if changeAuthor == 'y' or changeAuthor == "Y":
                 author = input("Who is the author for " + title + " ? ")
                 book.author = author
+            else:
+                ui.message("No changes made to the author.")
             return True
 
     return False # return False if book id is not found
